@@ -16,13 +16,13 @@ public class TestQueues {
 
 	@Test
 	public void testQueue() {
-		System.out.println("----------Test Queue----------");
+		System.out.println("----------Queue Test Start----------");
 		Queue Tester = new Queue(5);
 		assertTrue(Tester.isEmpty());
 		assertFalse(Tester.isFull());
 		assertEquals(0,Tester.getSize());
-		//System.out.println(Tester.peekFront());
-		//System.out.println(Tester.peekRear());
+		System.out.println(Tester.peekFront());
+		//System.out.println(Tester.peekRear());  //Error due to rear = -1, Array Index out of boundary
 		assertTrue(Tester.insert(1));
 		assertFalse(Tester.isEmpty());
 		assertFalse(Tester.isFull());
@@ -66,10 +66,10 @@ public class TestQueues {
 		assertEquals(1,Tester.getSize());
 		assertEquals(5,Tester.remove());
 		assertTrue(Tester.isEmpty());
-		System.out.println(Tester.peekFront());
+		System.out.println(Tester.peekFront());  
 		System.out.println(Tester.peekRear());
-		//assertEquals(0,Tester.peekFront());
-		//assertEquals(0,Tester.peekRear());
+		//assertEquals(0,Tester.peekFront());  //Error output value
+		//assertEquals(0,Tester.peekRear());  //Error output value
 		assertEquals(0,Tester.getSize());
 		
 		assertEquals(-1,Tester.remove());
@@ -81,7 +81,13 @@ public class TestQueues {
 		assertEquals(1,Tester.getSize());
 		assertEquals(6,Tester.peekFront());
 		assertEquals(6,Tester.peekRear());
-		
+		assertTrue(Tester.insert(-1));
+		assertFalse(Tester.isEmpty());
+		assertFalse(Tester.isFull());
+		assertEquals(2,Tester.getSize());
+		assertEquals(6,Tester.peekFront());
+		assertEquals(-1,Tester.peekRear());
+		System.out.println("----------Queue Test Finished----------");
 	}
 
 }
