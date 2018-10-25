@@ -30,7 +30,7 @@ dependencies {
 apply plugin: 'jacoco'
 
 jacoco{
-	toolVersion '3.0.3'
+	toolVersion '0.8.1'
 	//reportsDir = file("${buildDir}/customJacocoReportDir")
 }
 task jacocoTestReport(type: JacocoReport) {
