@@ -75,7 +75,12 @@ public class TestQueues {
 		assertEquals(-1,Tester.remove());
 		System.out.println(Tester.peekFront());
 		System.out.println(Tester.peekRear());
-		
+		assertTrue(Tester.insert(6));
+		assertFalse(Tester.isEmpty());
+		assertFalse(Tester.isFull());
+		assertEquals(1,Tester.getSize());
+		assertEquals(6,Tester.peekFront());
+		assertEquals(6,Tester.peekRear());
 		
 	}
 
