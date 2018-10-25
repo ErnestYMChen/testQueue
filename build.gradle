@@ -33,21 +33,24 @@ jacoco{
 	toolVersion '3.0.3'
 	//reportsDir = file("${buildDir}/customJacocoReportDir")
 }
-task codeCoverageReport2(type: JacocoReport) {
-
-    // Gather execution data from all subprojects
-    // (change this if you e.g. want to calculate unit test/integration test coverage separately)
-    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-
-    // Add all relevant sourcesets from the subprojects 
-    subprojects.each {
-       sourceSets it.sourceSets.main
+task jacocoTestReport(type: JacocoReport, dependsOn: "TestQueues") {
+    group = "Reporting"
+    description = "Generates Jacoco coverage reports"
+      reports {
+        xml.enabled = true
+        html.enabled = true
     }
-
-    reports {
-      xml.enabled true
-      html.enabled true
-      html.destination "${buildDir}/reports/jacoco"
-      csv.enabled false
-    }
+      classDirectories = fileTree(
+            dir: 'build/intermediates/classes',
+            excludes: ['**/R.class',
+                       '**/R$*.class',
+                       '**/BuildConfig.*',
+                       '**/Manifest*.*',
+                       '**/*Activity*.*',
+                       '**/*Fragment*.*'
+            ]
+    )
+      sourceDirectories = files(coverageSourceDirs)
+    additionalSourceDirs = files(coverageSourceDirs)
+    executionData = files('build/jacoco/TestQueues.exec')
 }
