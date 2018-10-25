@@ -33,24 +33,16 @@ jacoco{
 	toolVersion '3.0.3'
 	//reportsDir = file("${buildDir}/customJacocoReportDir")
 }
-task jacocoTestReport(type: JacocoReport, dependsOn: "TestQueues") {
-    group = "Reporting"
-    description = "Generates Jacoco coverage reports"
-      reports {
+jacocoTestReport {
+    //group = "Reporting"
+    //description = "Generates Jacoco coverage reports"
+    reports {
         xml.enabled = true
         html.enabled = true
+        csv.enabled = true
     }
-      classDirectories = fileTree(
-            dir: 'build/intermediates/classes',
-            excludes: ['**/R.class',
-                       '**/R$*.class',
-                       '**/BuildConfig.*',
-                       '**/Manifest*.*',
-                       '**/*Activity*.*',
-                       '**/*Fragment*.*'
-            ]
-    )
-      sourceDirectories = files(coverageSourceDirs)
-    additionalSourceDirs = files(coverageSourceDirs)
+      
+    //sourceDirectories = files(coverageSourceDirs)
+    //additionalSourceDirs = files(coverageSourceDirs)
     executionData = files('build/jacoco/TestQueues.exec')
 }
