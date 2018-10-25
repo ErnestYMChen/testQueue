@@ -46,3 +46,4 @@ jacocoTestReport {
     //additionalSourceDirs = files(coverageSourceDirs)
     executionData = files('build/jacoco/TestQueues.exec')
 }
+test.fianlizedBy jacocoTestReport
