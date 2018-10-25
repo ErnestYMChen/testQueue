@@ -31,15 +31,17 @@ apply plugin: 'jacoco'
 
 jacoco{
 	toolVersion '0.8.1'
+	reportsDir = file("${buildDir}/customJacocoReportDir")
 	//reportsDir = file("${buildDir}/customJacocoReportDir")
 }
-task jacocoTestReport(type: JacocoReport) {
+jacocoTestReport {
     //group = "Reporting"
     //description = "Generates Jacoco coverage reports"
     reports {
         xml.enabled = true
         xml.destination = "${buildDir}/reports/jacoco/report.xml"
         html.enabled = true
+        html.destination file("${buildDir}/jacocoHtml")
         csv.enabled = true
     }
       
