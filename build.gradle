@@ -45,6 +45,6 @@ task jacocoTestReport(type: JacocoReport) {
       
     //sourceDirectories = files(coverageSourceDirs)
     //additionalSourceDirs = files(coverageSourceDirs)
-    //executionData = files('build/jacoco/TestQueues.exec')
+    executionData = files('build/jacoco/TestQueues.exec')
 }
-test.fianlizedBy jacocoTestReport
+test.finalizedBy jacocoTestReport
