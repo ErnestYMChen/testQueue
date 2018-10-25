@@ -34,7 +34,7 @@ jacoco{
 	reportsDir = file("$buildDir/customJacocoReportDir")
 	//reportsDir = file("${buildDir}/customJacocoReportDir")
 }
-task jacocoTestReport {
+jacocoTestReport {
     //executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/TestQueues.exec")
     //group = "Reporting"
     //description = "Generates Jacoco coverage reports"
