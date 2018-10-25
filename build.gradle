@@ -30,16 +30,17 @@ dependencies {
 apply plugin: 'jacoco'
 
 jacoco{
-	toolVersion '0.8.1'
-	reportsDir = file("${buildDir}/customJacocoReportDir")
+	toolVersion '3.0.3'
+	reportsDir = file("$buildDir/customJacocoReportDir")
 	//reportsDir = file("${buildDir}/customJacocoReportDir")
 }
 jacocoTestReport {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/TestQueues.exec")
     //group = "Reporting"
     //description = "Generates Jacoco coverage reports"
     reports {
         xml.enabled = true
-        xml.destination = "${buildDir}/reports/jacoco/report.xml"
+        xml.destination "${buildDir}/reports/jacoco/report.xml"
         html.enabled = true
         html.destination file("${buildDir}/jacocoHtml")
         csv.enabled = true
@@ -47,6 +48,9 @@ jacocoTestReport {
       
     //sourceDirectories = files(coverageSourceDirs)
     //additionalSourceDirs = files(coverageSourceDirs)
-    executionData = files('build/jacoco/TestQueues.exec')
+    //executionData = files('build/jacoco/TestQueues.exec')
+}
+codeCoverageReport.dependsOn {
+    subprojects*.test
 }
 test.finalizedBy jacocoTestReport
