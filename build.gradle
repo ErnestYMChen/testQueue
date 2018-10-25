@@ -33,11 +33,12 @@ jacoco{
 	toolVersion '3.0.3'
 	//reportsDir = file("${buildDir}/customJacocoReportDir")
 }
-jacocoTestReport {
+task jacocoTestReport(type: JacocoReport) {
     //group = "Reporting"
     //description = "Generates Jacoco coverage reports"
     reports {
         xml.enabled = true
+        xml.destination = "${buildDir}/reports/jacoco/report.xml"
         html.enabled = true
         csv.enabled = true
     }
